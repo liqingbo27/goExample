@@ -27,6 +27,8 @@ func test1() {
 	}
 
 	fmt.Printf("%#v", mapString)
+	fmt.Println()
+	fmt.Printf("%#v", mapInterface)
 }
 
 func test2() {
