@@ -25,12 +25,17 @@ func main() {
 		sendMsg := "Hello World : " + nowDate
 
 		// 获取redis信息
+		rec1, err := conn.Do("lPop", "testList")
+		if rec1 != nil {
+			fmt.Println("--------- start ")
+			fmt.Println(rec1)
 
-		result, err := redis.Values(conn.Do("lpop", "key")) //读
-		if err != nil {
-			panic(err)
+			// 获取元素
+			element := string(rec1.([]byte))
+
+			fmt.Println(element)
+			fmt.Println("--------- end ")
 		}
-		fmt.Println("queue长度", result)
 
 		// 发送消息
 		_, err = conn.Do("LPUSH", "myqueues", sendMsg)
